@@ -2,13 +2,40 @@ services:
   mc:
     image: itzg/minecraft-server
     environment:
-      EULA: "true"
+      EULA: true
+      MEMORY: 8G
+      VERSION: 1.21.1
+      # REMOVE_OLD_MODS: true
+      TYPE: FABRIC
+      # FABRIC_FORCE_REINSTALL: true
+      MODRINTH_PROJECTS: |
+        fabric-api
+        ferrite-core
+        fallingtree
+        collective
+        starter-kit
+        cobblemon
+        resourceful-lib
+        athena-ctm
+        chipped
+        trinkets
+        geckolib
+        architectury-api
+        cobblefurnies
+        owo-lib
+        accessories:1.1.0-beta.52+1.21.1
+        cobblemon-mega-showdown
+        accessories-compat-layer:0.1.10
+        legendary-monuments
+      #  xaeros-minimap
+      # MODPACK_PLATFORM: MODRINTH
+      # MODRINTH_MODPACK: https://modrinth.com/modpack/cobblemon-fabric/version/1.7
     ports:
       - "25565:25565"
     volumes:
-      - data:/data
+      - ./minecraft-data:/data
+    restart: unless-stopped
     stdin_open: true
     tty: true
-    restart: unless-stopped
 volumes:
   data: {}
